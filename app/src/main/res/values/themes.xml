@@ -5,5 +5,5 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AquaLink" parent="Base.Theme.AquaLink" />
+    <style name="Theme.AquaLink" parent="Theme.Material3.Light.NoActionBar" />
 </resources>

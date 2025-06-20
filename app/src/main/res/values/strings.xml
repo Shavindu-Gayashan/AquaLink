@@ -1,4 +1,37 @@
 <resources>
+<!--    Common-->
     <string name="app_name">AquaLink</string>
     <string name="tagline">Connect, Monitor, Control</string>
+
+
+<!--    Login Screen-->
+    <string name="lbl_login">Login</string>
+    <string name="lbl_email">Email Address</string>
+    <string name="lbl_password">Password</string>
+    <string name="txt_email_hint">Enter your email address</string>
+    <string name="txt_password_hint">Enter your password</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
+    <string name="btn_login">Login</string>
+    <string name="lbl_do_not_have_account">If you don’t have account?</string>
+    <string name="btn_create_an_account">Create an Account</string>
+    <string name="lbl_login_with">or login with</string>
+
+
+<!--    Create Account Screen-->
+    <string name="lbl_create_an_account">Create an Account</string>
+    <string name="lbl_first_name">First Name</string>
+    <string name="lbl_terms">agree with terms and conditions</string>
+    <string name="txt_first_name_hint">Enter your First name</string>
+    <string name="btn_create">Create</string>
+    <string name="lbl_already_have_an_account">already have an account</string>
+
+
+<!--    Forgot Password Screen-->
+    <string name="lbl_forgot_password">Forgot Password</string>
+    <string name="lbl_forgot_password_instructions">Please enter your registered email address to receive a verification code.</string>
+    <string name="lbl_forgot_password_instructions_for_check_spam">If you don’t see the password reset email in your inbox, please check your spam or junk folder.</string>
+    <string name="btn_send">Send</string>
+
+
+
 </resources>

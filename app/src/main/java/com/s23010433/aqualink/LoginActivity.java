@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText txtEmail, txtPassword;
     private Button btnLogin;
-    private TextView btnCreateAnAccount;
+    private TextView btnCreateAnAccount, btnForgotPassword;
     private ImageButton btnLoginWithGoogle, btnLoginWithFacebook;
     private FirebaseAuth mAuth;
 
@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAnAccount = findViewById(R.id.btnCreateAnAccount);
+        btnForgotPassword = findViewById(R.id.btnForgotPassword);
         btnLoginWithGoogle = findViewById(R.id.btnloginWithGoogle);
         btnLoginWithFacebook = findViewById(R.id.btnLoginWithFacebook);
 
@@ -56,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
         //Facebook Login Button
         btnLoginWithFacebook.setOnClickListener(v-> {
             Toast.makeText(this, "Facebook login coming soon!", Toast.LENGTH_SHORT).show();
+        });
+
+        //Forgot Password Button
+        btnForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
         });
 
     }

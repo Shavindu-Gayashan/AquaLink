@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //Delay for 5 seconds before starting the LoginActivity
+        //Delay for 1 seconds before starting the LoginActivity
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(MainActivity.this , LoginActivity.class);
             startActivity(intent);
             finish();
-        },5000);
+        },1000);
     }
 }
