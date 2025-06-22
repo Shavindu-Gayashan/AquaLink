@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#E0E0E0" />
+            <corners android:radius="6dp"/>
+        </shape>
+    </item>
+
+    <!-- Progress Fill -->
+    <item android:id="@android:id/progress">
+        <clip
+            android:clipOrientation="vertical"
+            android:gravity="top"> <!-- fill from top -->
+            <shape android:shape="rectangle">
+                <solid android:color="@color/theme_blue"/>
+                <corners android:radius="6dp"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

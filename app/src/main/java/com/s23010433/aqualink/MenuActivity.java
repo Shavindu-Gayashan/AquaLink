@@ -52,8 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnMapView.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "Map view coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, MapViewActivity.class));
+            startActivity(new Intent(MenuActivity.this, MapViewActivity.class));
         });
 
         btnTechnicalSupport.setOnClickListener(v -> {
@@ -72,8 +71,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnManageDevices.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "Manage devices coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, ManageDevicesActivity.class));
+            startActivity(new Intent(MenuActivity.this, ManageDeviceActivity.class));
         });
 
         btnCustomization.setOnClickListener(v -> {

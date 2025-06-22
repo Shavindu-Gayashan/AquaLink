@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AquaLink"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyACDU9HeEfjXiV2cR0Vp26UHHQlhj57V24" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -26,6 +30,10 @@
         <activity android:name=".CreateAccountActivity" />
         <activity android:name="ForgotPasswordActivity" />
         <activity android:name=".MenuActivity" />
+        <activity android:name=".ManageDeviceActivity" />
+        <activity android:name=".MapViewActivity" />
+
+
     </application>
 
 </manifest>

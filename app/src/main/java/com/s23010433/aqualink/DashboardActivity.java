@@ -5,6 +5,7 @@ import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
     private View settingsAuto, settingsManual, settingsCustom, icon_connection_state;
     private TextView btnModeAuto, btnModeManual, btnModeCustom, txt_water_level, txt_motor_state, txt_connection_state, txt_selected_mode;
     ImageView btnMenu;
+    private ProgressBar progressBar;
 
     private String currentMode = "auto"; // Default mode
 
@@ -29,10 +31,14 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
+        //Progress Bar
+        progressBar = findViewById(R.id.progressHorizontal);
+
         // Get layout references
         settingsAuto = findViewById(R.id.settings_auto);
         settingsManual = findViewById(R.id.settings_manual);
         settingsCustom = findViewById(R.id.settings_custom);
+
 
         // Get button references
         btnModeAuto = findViewById(R.id.btn_mode_auto);
@@ -80,6 +86,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                     if (level != null)
                         txt_water_level.setText(level + "%");
+                        progressBar.setProgress(level.intValue());
 
                     if (motor != null)
                         txt_motor_state.setText(motor);
