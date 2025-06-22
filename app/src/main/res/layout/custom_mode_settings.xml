@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_custom_on_hint"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:padding="16dp"
                 android:text="@string/txt_custom_on_default"
                 android:textSize="16sp" />
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_custom_off_hint"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:padding="16dp"
                 android:text="@string/txt_custom_off_default"
                 android:textSize="16sp" />
@@ -91,7 +91,7 @@
             android:layout_marginBottom="16dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSaveAuto"
+            android:id="@+id/btnSaveCustom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/theme_blue"

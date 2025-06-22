@@ -64,6 +64,7 @@
 
 <!--    Manual Mode Screen-->
     <string name="btn_manual_turn_on">Turn ON</string>
+    <string name="btn_manual_turn_off">Turn OFF</string>
     <string name="lbl_manual_mode_settings">Manual Mode Settings</string>
     <string name="txt_manual_safety_timeout_hint">Enter Safety Timeout</string>
     <string name="lbl_manual_safety_timeout_description">Safety timeout: Automatically turns off the motor after a set time to prevent overrun.</string>
