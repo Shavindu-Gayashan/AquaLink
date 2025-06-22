@@ -34,8 +34,10 @@
 
 <!--    Dashboard Screen-->
     <string name="lbl_tank_name">Main Tank</string>
-    <string name="lbl_connection_state">Connected</string>
-    <string name="lbl_water_level">75%</string>
+    <string name="lbl_connection_state_connected">Connected</string>
+    <string name="lbl_connection_state_connecting">Connecting</string>
+    <string name="lbl_connection_state_disconnected">Disconnected</string>
+    <string name="lbl_water_level">--%</string>
     <string name="lbl_motor_state">Motor Status:</string>
     <string name="lbl_selected_mode">Selected Mode:</string>
     <string name="lbl_estimate_time">Estimate Time:</string>

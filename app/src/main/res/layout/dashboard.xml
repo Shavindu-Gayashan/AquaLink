@@ -108,7 +108,7 @@
                                 android:layout_column="0"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginEnd="6dp"
-                                android:background="@drawable/circle_green" />
+                                android:background="@drawable/circle_red" />
 
                             <TextView
                                 android:id="@+id/txt_connection_state"
@@ -117,8 +117,8 @@
                                 android:layout_row="0"
                                 android:layout_column="1"
                                 android:layout_gravity="center_vertical"
-                                android:text="@string/lbl_connection_state"
-                                android:textColor="@color/green"
+                                android:text="@string/lbl_connection_state_disconnected"
+                                android:textColor="@color/red"
                                 android:textSize="14sp" />
 
                         </GridLayout>
@@ -152,7 +152,7 @@
 
                             <!-- Percentage Display -->
                             <TextView
-                                android:id="@+id/percentageText"
+                                android:id="@+id/txt_water_level"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_row="0"
@@ -187,6 +187,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/txt_motor_state"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_row="0"
@@ -211,6 +212,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/txt_selected_mode"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_row="1"
