@@ -1,7 +1,9 @@
 <resources>
 <!--    Common-->
     <string name="app_name">AquaLink</string>
+    <string name="app_name_with_version">AquaLink v0.1</string>
     <string name="tagline">Connect, Monitor, Control</string>
+    <string name="username">Username</string>
 
 
 <!--    Login Screen-->
@@ -86,4 +88,15 @@
     <string name="txt_custom_on_default">50</string>
     <string name="txt_custom_off_default">100</string>
 
+<!--    Manu Screen-->
+    <!-- Button Texts -->
+    <string name="btn_map_view">Map View</string>
+    <string name="btn_technical_support">Technical Support</string>
+    <string name="btn_user_settings">User Settings</string>
+    <string name="btn_app_settings">App Settings</string>
+    <string name="btn_manage_devices">Manage Devices</string>
+    <string name="btn_customization">Customization</string>
+    <string name="btn_user_manual">User Manual</string>
+    <string name="btn_about">About</string>
+    <string name="btn_logout">Logout</string>
 </resources>

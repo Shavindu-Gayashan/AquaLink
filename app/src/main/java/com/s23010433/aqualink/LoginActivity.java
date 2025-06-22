@@ -31,6 +31,15 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Check if user is already signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is already signed in, redirect to dashboard
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+            finish();
+            return;
+        }
+
         //Bind views
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
