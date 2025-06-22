@@ -32,6 +32,55 @@
     <string name="lbl_forgot_password_instructions_for_check_spam">If you don’t see the password reset email in your inbox, please check your spam or junk folder.</string>
     <string name="btn_send">Send</string>
 
+<!--    Dashboard Screen-->
+    <string name="lbl_tank_name">Main Tank</string>
+    <string name="lbl_connection_state">Connected</string>
+    <string name="lbl_water_level">75%</string>
+    <string name="lbl_motor_state">Motor Status:</string>
+    <string name="lbl_selected_mode">Selected Mode:</string>
+    <string name="lbl_estimate_time">Estimate Time:</string>
+    <string name="lbl_running_time">Motor Status:</string>
 
+    <string name="value_motor_state">ON</string>
+    <string name="value_selected_mode">Auto</string>
+    <string name="value_estimate_time">Calculating</string>
+    <string name="value_running_time">01.25:00</string>
+
+    <string name="lbl_mode_auto">Auto</string>
+    <string name="lbl_mode_manual">Manual</string>
+    <string name="lbl_mode_custom">Custom</string>
+
+<!--     Auto Mode Screen  -->
+    <string name="lbl_auto_mode_description">Automatically turns the motor ON at 50% and OFF at 100% water level.</string>
+    <string name="lbl_auto_mode_settings">Auto Mode Settings</string>
+
+    <string name="txt_auto_on_hint">Enter Auto ON level</string>
+    <string name="txt_auto_off_hint">Enter Auto OFF level</string>
+
+    <string name="txt_auto_on">50</string>
+    <string name="txt_auto_off">100</string>
+
+    <string name="btn_save_auto_settings">Save</string>
+
+<!--    Manual Mode Screen-->
+    <string name="btn_manual_turn_on">Turn ON</string>
+    <string name="lbl_manual_mode_settings">Manual Mode Settings</string>
+    <string name="txt_manual_safety_timeout_hint">Enter Safety Timeout</string>
+    <string name="lbl_manual_safety_timeout_description">Safety timeout: Automatically turns off the motor after a set time to prevent overrun.</string>
+    <string name="txt_manual_safety_timeout">80</string>
+
+<!--    Custom Mode Screen-->
+    <string name="lbl_custom_mode_settings">Custom Mode Settings</string>
+
+    <string name="txt_custom_on_hint">Enter Custom ON level</string>
+    <string name="txt_custom_off_hint">Enter Custom OFF level</string>
+
+    <string name="switch_enable_auto_on_trigger">Enable Auto ON Trigger</string>
+    <string name="switch_enable_auto_off_trigger">Enable Auto OFF Trigger</string>
+
+    <string name="btn_save_custom_settings">Save</string>
+
+    <string name="txt_custom_on_default">50</string>
+    <string name="txt_custom_off_default">100</string>
 
 </resources>
