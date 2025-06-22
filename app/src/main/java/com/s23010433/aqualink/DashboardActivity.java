@@ -4,9 +4,11 @@ import android.util.Log;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +20,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private View settingsAuto, settingsManual, settingsCustom, icon_connection_state;
     private TextView btnModeAuto, btnModeManual, btnModeCustom, txt_water_level, txt_motor_state, txt_connection_state, txt_selected_mode;
+    ImageView btnMenu;
 
     private String currentMode = "auto"; // Default mode
 
@@ -35,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnModeAuto = findViewById(R.id.btn_mode_auto);
         btnModeManual = findViewById(R.id.btn_mode_manual);
         btnModeCustom = findViewById(R.id.btn_mode_custom);
+        btnMenu = findViewById(R.id.btn_menu);
 
         // Set onClick listeners
         btnModeAuto.setOnClickListener(v -> {
@@ -49,6 +53,10 @@ public class DashboardActivity extends AppCompatActivity {
             updateModeInDatabase("custom");
             showMode("custom");
         });
+        btnMenu.setOnClickListener(v -> {
+            startActivity(new Intent(DashboardActivity.this, MenuActivity.class));
+        });
+
 
         // Database
         txt_water_level = findViewById(R.id.txt_water_level);

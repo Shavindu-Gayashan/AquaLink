@@ -10,6 +10,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,11 +26,22 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //Delay for 1 seconds before starting the LoginActivity
+        // Delay for 1 second before checking auth status
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this , LoginActivity.class);
+            // Check if user is already signed in
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            Intent intent;
+
+            if (currentUser != null) {
+                // User is signed in, go to dashboard
+                intent = new Intent(MainActivity.this, DashboardActivity.class);
+            } else {
+                // No user is signed in, go to login
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+            }
+
             startActivity(intent);
             finish();
-        },1000);
+        }, 1000);
     }
 }
