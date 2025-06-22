@@ -4,4 +4,17 @@
     <color name="white">#FFFFFFFF</color>
     <color name="stroke">#E0E0E0</color>
     <color name="theme_blue">#0061CB</color>
+
+    <color name="light_purple">#E8D5FF</color>
+    <color name="blue_primary">#2196F3</color>
+    <color name="blue_water">#4FC3F7</color>
+    <color name="gray_dark">#424242</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#E60000</color>
+    <color name="orange">#FFA500</color>
+    <color name="selected">#72C4FD</color>
+    <color name="warning">#FF5151</color>
+
+
 </resources>
