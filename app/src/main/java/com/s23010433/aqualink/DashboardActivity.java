@@ -1,5 +1,8 @@
 package com.s23010433.aqualink;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.util.Log;
 
 import android.os.Bundle;
@@ -25,6 +28,11 @@ public class DashboardActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private String currentMode = "auto"; // Default mode
+
+    // used for the shake detection
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +136,33 @@ public class DashboardActivity extends AppCompatActivity {
                 icon_connection_state.setBackgroundResource(R.drawable.circle_orange);
             }
         });
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(count -> {
+            if (count >= 2) {  // Require at least 2 shakes to trigger
+                // Navigate to Technical Support page
+                Intent intent = new Intent(DashboardActivity.this, TechnicalSupportActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Register the sensor listener when activity is in foreground
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        // Unregister the sensor listener when activity is not in foreground
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
     }
 
     private void showMode(String mode) {

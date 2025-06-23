@@ -144,7 +144,7 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
 
             // Move camera to the marker if it's the first one
             if (markers.size() == 1) {
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 10f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 14f));
             }
         }
     }

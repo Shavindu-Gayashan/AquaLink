@@ -56,8 +56,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnTechnicalSupport.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "Technical support coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, TechnicalSupportActivity.class));
+            startActivity(new Intent(MenuActivity.this, TechnicalSupportActivity.class));
         });
 
         btnUserSettings.setOnClickListener(v -> {

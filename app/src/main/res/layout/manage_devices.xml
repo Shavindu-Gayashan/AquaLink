@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/technical_support"
+    android:id="@+id/manageDevices"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_transparatent"
-    tools:context=".TechnicalSupportActivity">
+    tools:context=".ManageDeviceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                             android:background="@drawable/rounded_background_gray"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Technical Support"
+                            android:text="Manage Devices"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -133,7 +133,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="5dp"
-                            android:text="Contact Number"
+                            android:text="Device Name"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="normal" />
@@ -153,56 +153,76 @@
                                 android:id="@+id/txtContactNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Enter your Contact Number"
+                                android:hint="Enter a Name for device"
                                 android:inputType="textEmailAddress"
                                 android:padding="16dp"
                                 android:textSize="16sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Description"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="normal" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            app:boxCornerRadiusBottomEnd="8dp"
-                            app:boxCornerRadiusBottomStart="8dp"
-                            app:boxCornerRadiusTopEnd="8dp"
-                            app:boxCornerRadiusTopStart="8dp"
-                            app:boxStrokeColor="@color/stroke"
-                            app:boxStrokeWidth="1dp">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txtFault"
-                                android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:hint="Description about fault"
-                                android:inputType="textEmailAddress"
-                                android:gravity="top"
-                                android:padding="16dp"
-                                android:textSize="16sp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnShare"
+                            android:id="@+id/btnSelect"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="@color/theme_blue"
-                            android:text="Share"
+                            android:text="Select Location"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             app:cornerRadius="8dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="@color/theme_blue"
+                            android:text="Add"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            app:cornerRadius="8dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_background_gray"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Device List"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
+
+                            <include layout="@layout/single_device1" />
+                            <include layout="@layout/single_device2" />
+
+                        </LinearLayout>
+
+
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
