@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -92,10 +93,10 @@ public class DashboardActivity extends AppCompatActivity {
                     String motor = snapshot.child("motor_state").getValue(String.class);
                     String mode = snapshot.child("selected_mode").getValue(String.class);
 
-                    if (level != null)
+                    if (level != null) {
                         txt_water_level.setText(level + "%");
                         progressBar.setProgress(level.intValue());
-
+                    }
                     if (motor != null)
                         txt_motor_state.setText(motor);
 
@@ -146,6 +147,7 @@ public class DashboardActivity extends AppCompatActivity {
                 // Navigate to Technical Support page
                 Intent intent = new Intent(DashboardActivity.this, TechnicalSupportActivity.class);
                 startActivity(intent);
+                Toast.makeText(DashboardActivity.this, "Shake Detected! Navigating to Technical Support", Toast.LENGTH_SHORT).show();
             }
         });
     }

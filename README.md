@@ -31,6 +31,10 @@
     - Device management
     - UI and notification customization
     - Access to documentation
+- **Device management interface**
+  - Add Device Using Device ID
+  - Show added Devices
+  - Remove added Devices
 
 ---
 
@@ -42,7 +46,6 @@ The following features are currently in progress:
 - 🗺️ Multi-tank monitoring via map view
 - 🛠️ Built-in technical support system
 - ⚙️ User profile and settings management
-- 📲 Device management interface
 - 🎨 UI/notification customization options
 - 📘 In-app user manual and documentation
 - 📊 Advanced water level prediction algorithms
