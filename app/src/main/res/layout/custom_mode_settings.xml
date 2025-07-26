@@ -35,7 +35,7 @@
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtAutoOnLevel"
+                android:id="@+id/txtCustomOnLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_custom_on_hint"
@@ -59,7 +59,7 @@
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtAutoOffLevel"
+                android:id="@+id/txtCustomOffLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_custom_off_hint"
