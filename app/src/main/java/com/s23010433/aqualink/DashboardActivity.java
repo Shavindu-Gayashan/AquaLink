@@ -45,11 +45,18 @@ public class DashboardActivity extends AppCompatActivity {
     private DatabaseReference requestTurnOnRef;
     private DatabaseReference requestTurnOffRef;
     private DatabaseReference settingsRef;
+    private DatabaseReference lastSeenRef;
 
     // Safety timeout handler
     private Handler safetyTimeoutHandler = new Handler();
     private Runnable safetyTimeoutRunnable;
     private boolean isRequestPending = false;
+
+    // IoT connectivity monitoring
+    private Handler connectivityCheckHandler = new Handler();
+    private Runnable connectivityCheckRunnable;
+    private static final long DEVICE_OFFLINE_THRESHOLD = 60000; // 60 seconds
+    private boolean isIoTDeviceOnline = false;
 
     // used for the shake detection
     private SensorManager mSensorManager;
@@ -94,9 +101,13 @@ public class DashboardActivity extends AppCompatActivity {
         requestTurnOnRef = database.getReference("water_tank/isRequestToTurnOn");
         requestTurnOffRef = database.getReference("water_tank/isRequestToTurnOff");
         settingsRef = database.getReference("water_tank/settings");
+        lastSeenRef = database.getReference("water_tank/last_seen");
 
         // Load settings from Firebase on app start
         loadSettingsFromFirebase();
+
+        // Start IoT connectivity monitoring
+        startIoTConnectivityMonitoring();
 
         // Set onClick listeners
         btnModeAuto.setOnClickListener(v -> {
@@ -173,27 +184,35 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        // Connection state listener
+        // Firebase connection state listener (for database connectivity)
         connectedRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Boolean connected = snapshot.getValue(Boolean.class);
-                if (connected != null && connected) {
-                    txt_connection_state.setText(getString(R.string.lbl_connection_state_connected));
-                    txt_connection_state.setTextColor(getResources().getColor(R.color.green));
-                    icon_connection_state.setBackgroundResource(R.drawable.circle_green);
-                } else {
-                    txt_connection_state.setText(getString(R.string.lbl_connection_state_disconnected));
-                    txt_connection_state.setTextColor(getResources().getColor(R.color.red));
-                    icon_connection_state.setBackgroundResource(R.drawable.circle_red);
+                updateConnectionStatus(connected != null && connected);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                updateConnectionStatus(false);
+            }
+        });
+
+        // IoT device last seen timestamp listener
+        lastSeenRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Long lastSeenTimestamp = snapshot.getValue(Long.class);
+                if (lastSeenTimestamp != null) {
+                    checkIoTDeviceStatus(lastSeenTimestamp);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                txt_connection_state.setText(getString(R.string.lbl_connection_state_connecting));
-                txt_connection_state.setTextColor(getResources().getColor(R.color.orange));
-                icon_connection_state.setBackgroundResource(R.drawable.circle_orange);
+                Log.e("Firebase", "Failed to monitor IoT device status: " + error.getMessage());
+                isIoTDeviceOnline = false;
+                updateConnectionDisplay();
             }
         });
 
@@ -208,6 +227,79 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(DashboardActivity.this, "Shake Detected! Navigating to Technical Support", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // Start periodic IoT connectivity monitoring
+    private void startIoTConnectivityMonitoring() {
+        connectivityCheckRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Check every 10 seconds
+                lastSeenRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult().exists()) {
+                        Long lastSeenTimestamp = task.getResult().getValue(Long.class);
+                        if (lastSeenTimestamp != null) {
+                            checkIoTDeviceStatus(lastSeenTimestamp);
+                        }
+                    } else {
+                        isIoTDeviceOnline = false;
+                        updateConnectionDisplay();
+                    }
+                });
+
+                // Schedule next check
+                connectivityCheckHandler.postDelayed(this, 10000); // Check every 10 seconds
+            }
+        };
+
+        // Start the periodic check
+        connectivityCheckHandler.post(connectivityCheckRunnable);
+    }
+
+    // Check if IoT device is online based on last seen timestamp
+    private void checkIoTDeviceStatus(long lastSeenTimestamp) {
+        long currentTime = System.currentTimeMillis();
+        long timeDifference = currentTime - lastSeenTimestamp;
+
+        boolean wasOnline = isIoTDeviceOnline;
+        isIoTDeviceOnline = timeDifference <= DEVICE_OFFLINE_THRESHOLD;
+
+        // Log status change
+        if (wasOnline != isIoTDeviceOnline) {
+            Log.d("IoT", "Device status changed: " + (isIoTDeviceOnline ? "ONLINE" : "OFFLINE"));
+            Log.d("IoT", "Last seen: " + (timeDifference / 1000) + " seconds ago");
+        }
+
+        updateConnectionDisplay();
+    }
+
+    // Update connection display based on both database and IoT device status
+    private void updateConnectionDisplay() {
+        // This method will be called by updateConnectionStatus() for database connectivity
+        // and by checkIoTDeviceStatus() for IoT device connectivity
+
+        // The display will show the combined status
+        if (isIoTDeviceOnline) {
+            txt_connection_state.setText("Connected (Tank Online)");
+            txt_connection_state.setTextColor(getResources().getColor(R.color.green));
+            icon_connection_state.setBackgroundResource(R.drawable.circle_green);
+        } else {
+            txt_connection_state.setText("Connected (Tank Offline)");
+            txt_connection_state.setTextColor(getResources().getColor(R.color.orange));
+            icon_connection_state.setBackgroundResource(R.drawable.circle_orange);
+        }
+    }
+
+    // Update connection status (for database connectivity)
+    private void updateConnectionStatus(boolean isDatabaseConnected) {
+        if (!isDatabaseConnected) {
+            txt_connection_state.setText("Disconnected");
+            txt_connection_state.setTextColor(getResources().getColor(R.color.red));
+            icon_connection_state.setBackgroundResource(R.drawable.circle_red);
+        } else {
+            // When database is connected, show IoT device status
+            updateConnectionDisplay();
+        }
     }
 
     // Load settings from Firebase on app startup
@@ -375,10 +467,21 @@ public class DashboardActivity extends AppCompatActivity {
         if (safetyTimeoutRunnable != null) {
             safetyTimeoutHandler.removeCallbacks(safetyTimeoutRunnable);
         }
+
+        // Cancel IoT connectivity monitoring
+        if (connectivityCheckRunnable != null) {
+            connectivityCheckHandler.removeCallbacks(connectivityCheckRunnable);
+        }
     }
 
     // Manual motor control method with safety timeout
     private void onStartButtonClicked() {
+        // Check if IoT device is online before allowing manual control
+        if (!isIoTDeviceOnline) {
+            Toast.makeText(this, "Cannot control motor: Tank is offline", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Cancel any existing timeout
         if (safetyTimeoutRunnable != null) {
             safetyTimeoutHandler.removeCallbacks(safetyTimeoutRunnable);
