@@ -17,11 +17,18 @@
     - Real-time water level monitoring (percentage)
     - Motor status display (On/Off indicators)
     - Firebase Realtime Database connection status
+    - **IoT device connectivity status** (shows if tank is online/offline)
+    - **Shake-to-support**: Shake device to quickly access technical support
 
 - **Operation Modes**
     - **Auto Mode**: Automatically manages water level based on threshold values
-    - **Manual Mode**: Allows direct control of the pump with a built-in safety timeout
-    - **Custom Mode**: User-defined automation logic
+    - **Manual Mode**: Allows direct control of the pump with a built-in **safety timeout**
+    - **Custom Mode**: User-defined automation logic with configurable triggers
+
+- **Advanced Mode Settings**
+    - Configure ON/OFF water levels for Auto and Custom modes
+    - Enable/disable auto triggers in Custom mode
+    - Set safety timeout for Manual mode
 
 - **Navigation & Menu**
     - User profile access
@@ -31,10 +38,11 @@
     - Device management
     - UI and notification customization
     - Access to documentation
-- **Device management interface**
-  - Add Device Using Device ID
-  - Show added Devices
-  - Remove added Devices
+
+- **Device Management Interface**
+    - Add device using Device ID
+    - Show added devices
+    - Remove added devices
 
 ---
 
@@ -58,6 +66,5 @@ The following features are currently in progress:
 > Integration with physical ESP32 devices for sensor input and pump control is being developed in parallel.
 
 ---
-
 
 ## 👨‍🎓 Developed as a university project by students of the **Open University of Sri Lanka**.
