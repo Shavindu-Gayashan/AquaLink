@@ -35,6 +35,7 @@
         <activity android:name=".MapViewActivity" />
         <activity android:name=".TechnicalSupportActivity" />
         <activity android:name=".UserSettingsActivity" />
+        <activity android:name=".UserManualActivity" />
 
 
     </application>

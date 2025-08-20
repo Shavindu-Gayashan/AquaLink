@@ -125,8 +125,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnUserManual.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "User manual coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, UserManualActivity.class));
+            startActivity(new Intent(MenuActivity.this, UserManualActivity.class));
         });
 
         btnAbout.setOnClickListener(v -> {
