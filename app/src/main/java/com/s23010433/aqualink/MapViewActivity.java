@@ -1,5 +1,6 @@
 package com.s23010433.aqualink;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -34,10 +35,17 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_view);
 
-        // Hook up menu button if needed
+        // Hook up back button
+        ImageView btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> {
+            startActivity(new Intent(MapViewActivity.this, DashboardActivity.class));
+            finish();
+        });
+
+        // Hook up menu button
         ImageView btnMenu = findViewById(R.id.btn_menu);
         btnMenu.setOnClickListener(v -> {
-            finish(); // Return to previous activity
+            startActivity(new Intent(MapViewActivity.this, MenuActivity.class));
         });
 
         // Initialize map fragment

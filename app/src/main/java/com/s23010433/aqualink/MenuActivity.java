@@ -10,13 +10,22 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
-    ImageView btnMenu;
+    ImageView btnMenu, btnHome;
     TextView username;
     MaterialButton btnMapView, btnTechnicalSupport, btnUserSettings,
             btnAppSettings, btnManageDevices, btnCustomization,
             btnUserManual, btnAbout, btnLogout;
+
+    // Firebase references
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
 
         // Initialize views
         btnMenu = findViewById(R.id.btn_menu);
+        btnHome = findViewById(R.id.btn_home);
         username = findViewById(R.id.username);
 
         // Initialize buttons
@@ -38,14 +48,51 @@ public class MenuActivity extends AppCompatActivity {
         btnAbout = findViewById(R.id.btnAbout);
         btnLogout = findViewById(R.id.btnLogout);
 
+        // Initialize Firebase Auth and Database
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         // Set username if logged in
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String displayName = user.getDisplayName();
-            username.setText(displayName != null ? displayName : "User");
+            String userId = user.getUid();
+            mDatabase.child("Users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String displayName = dataSnapshot.child("name").getValue(String.class);
+                        String profilePicture = dataSnapshot.child("selectedProfilePicture").getValue(String.class);
+
+                        username.setText(displayName != null ? displayName : "User");
+
+                        // Load profile picture if exists
+                        if (profilePicture != null) {
+                            ImageView profileImageView = findViewById(R.id.profileImageView);
+                            if (profileImageView != null) {
+                                int resID = getResources().getIdentifier(profilePicture, "drawable", getPackageName());
+                                if (resID != 0) {
+                                    profileImageView.setImageResource(resID);
+                                }
+                            }
+                        }
+                    } else {
+                        username.setText("User");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(MenuActivity.this, "Error loading user data", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         // Button click listeners
+        btnHome.setOnClickListener(v -> {
+            startActivity(new Intent(MenuActivity.this, DashboardActivity.class));
+            finish();
+        });
+
         btnMenu.setOnClickListener(v -> {
             startActivity(new Intent(MenuActivity.this, DashboardActivity.class));
             finish();
@@ -60,8 +107,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnUserSettings.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "User settings coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, UserSettingsActivity.class));
+            startActivity(new Intent(MenuActivity.this, UserSettingsActivity.class));
         });
 
         btnAppSettings.setOnClickListener(v -> {

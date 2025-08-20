@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -21,6 +27,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private TextView btnLogin;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void  onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         setContentView(R.layout.create_account);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
         // Bind UI elements
         txtName = findViewById(R.id.txtName);
@@ -73,11 +81,34 @@ public class CreateAccountActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
-                        // Go to Dashboard or login
-                        startActivity(new Intent(this, DashboardActivity.class));
-                        finish();
+                        // Save user info to Firebase Database
+                        String userId = user.getUid();
+                        Map<String, Object> userData = new HashMap<>();
+                        userData.put("id", userId);
+                        userData.put("name", name);
+                        userData.put("email", email);
+
+                        mDatabase.child(userId).setValue(userData)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+
+                                        // Update user profile
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(name)
+                                                .build();
+
+                                        user.updateProfile(profileUpdates)
+                                                .addOnCompleteListener(task2 -> {
+                                                    // Go to Dashboard or login
+                                                    startActivity(new Intent(this, DashboardActivity.class));
+                                                    finish();
+                                                });
+                                    } else {
+                                        Toast.makeText(this, "Failed to save user data: " + task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
                     } else {
                         Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
@@ -85,5 +116,3 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
 }
-
-
