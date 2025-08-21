@@ -1,7 +1,7 @@
 <resources>
 <!--    Common-->
     <string name="app_name">AquaLink</string>
-    <string name="app_name_with_version">AquaLink v0.1</string>
+    <string name="app_name_with_version">AquaLink v1.0</string>
     <string name="tagline">Connect, Monitor, Control</string>
     <string name="username">Username</string>
 

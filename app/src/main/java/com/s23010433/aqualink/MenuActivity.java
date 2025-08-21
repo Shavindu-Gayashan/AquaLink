@@ -41,7 +41,6 @@ public class MenuActivity extends AppCompatActivity {
         btnMapView = findViewById(R.id.btnMapView);
         btnTechnicalSupport = findViewById(R.id.btnTechnicalSupport);
         btnUserSettings = findViewById(R.id.btnUserSettings);
-        btnAppSettings = findViewById(R.id.btnAppSettings);
         btnManageDevices = findViewById(R.id.btnManageDevices);
         btnCustomization = findViewById(R.id.btnCustomization);
         btnUserManual = findViewById(R.id.btnUserManual);
@@ -110,11 +109,6 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(new Intent(MenuActivity.this, UserSettingsActivity.class));
         });
 
-        btnAppSettings.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "App settings coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, AppSettingsActivity.class));
-        });
-
         btnManageDevices.setOnClickListener(v -> {
             startActivity(new Intent(MenuActivity.this, ManageDeviceActivity.class));
         });
@@ -129,8 +123,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         btnAbout.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "About page coming soon", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(MenuActivity.this, AboutActivity.class));
+            startActivity(new Intent(MenuActivity.this, AboutActivity.class));
         });
 
         btnLogout.setOnClickListener(v -> {

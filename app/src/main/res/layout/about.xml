@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_transparatent"
+    tools:context=".AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Header using GridLayout -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:background="@color/white"
+            android:columnCount="3"
+            android:padding="16dp"
+            android:useDefaultMargins="false">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:padding="8dp"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center_vertical|fill_horizontal"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/blue_primary"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_menu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_menue" />
+        </GridLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Main Content Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+                        <!-- App Logo and Title -->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="16dp"
+                            android:src="@drawable/logo" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/app_name"
+                            android:textColor="@color/blue_primary"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Version 1.0.0"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="24dp" />
+
+                        <!-- About Section -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_background_gray"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:text="About AquaLink"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="AquaLink is an innovative IoT-based water tank monitoring and management system designed to provide real-time insights and automated control of your water storage facilities.\n\nOur smart solution helps you monitor water levels, control pumps remotely, and ensure efficient water management through advanced automation and intelligent monitoring."
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <!-- Features Section -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_background_gray"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:text="Key Features"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="• Real-time water level monitoring\n• Automated pump control\n• Manual and custom control modes\n• GPS location mapping\n• Remote device management\n• Safety timeout mechanisms\n• Technical support integration\n• Multi-device connectivity"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <!-- Developer Section -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_background_gray"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:text="Developer Information"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="Developed by: Student ID S23010433\nDevelopment Year: 2024-2025\nTechnology Stack: Android Native, Firebase, IoT Integration\nSupported Platforms: Android 5.0 and above"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <!-- Contact Section -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_background_gray"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:text="Support and Contact"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="For technical support, feature requests, or bug reports, please use the Technical Support feature within the app or contact our development team.\n\nWe are committed to providing the best water management solution for your needs."
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <!-- Action Buttons -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="16dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnTechnicalSupport"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="8dp"
+                                android:backgroundTint="@color/theme_blue"
+                                android:text="Get Support"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                app:cornerRadius="8dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnUserManual"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="8dp"
+                                android:backgroundTint="@color/gray_light"
+                                android:text="User Manual"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:cornerRadius="8dp" />
+
+                        </LinearLayout>
+
+                        <!-- Copyright -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:gravity="center"
+                            android:text="© 2024-2025 AquaLink. All rights reserved."
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
